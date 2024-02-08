@@ -1,13 +1,225 @@
-body {
-  margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
-    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
-    sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
+* {
+  margin: 0px;
+  padding: 0px;
+  box-sizing: border-box;
 }
 
-code {
-  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
-    monospace;
+:root {
+  --primary-bg-color: #f6f6f6;
+  --secondary-bg-color: #fff;
+  --tertiary-bg-color: #303841;
+  --note-bg-color: #fce38a;
+  --add-note-bg-color: #95e1d3;
+  --button-bg-color: #ff2e63;
+  --footer-bg-color: #3a4750;
+  --text-color-black: #000;
+  --text-color-white: #fff;
+  --footer-text-color: #ccc;
+  --search-text-color: #222;
+}
+.dark {
+  --primary-bg-color: #303841;
+  --secondary-bg-color: #3a4750;
+  --tertiary-bg-color: #3a4750;
+  --note-bg-color: #fce38a;
+  --add-note-bg-color: #95e1d3;
+  --button-bg-color: #ff2e63;
+  --footer-bg-color: #3a4750;
+  --text-color-black: #000;
+  --text-color-white: #fff;
+  --footer-text-color: #ccc;
+  --search-text-color: #f2f2f2;
+}
+
+.container-fluid {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+}
+
+.header {
+  background-color: var(--tertiary-bg-color);
+  padding: 10px;
+  box-shadow: 0px 1px 2px 0px rgba(0, 0, 0, 0.2);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  position: sticky;
+  top: 0px;
+  color: var(--text-color-white);
+}
+.header-logo {
+  font-size: 32px;
+  font-weight: bold;
+}
+
+.header-theme {
+  display: flex;
+  align-items: center;
+  cursor: pointer;
+  user-select: none;
+}
+
+.header-theme .theme-text {
+  font-size: 20px;
+  font-weight: 600;
+  margin-left: 8px;
+  text-transform: capitalize;
+}
+
+.content {
+  flex: 1;
+  background-color: var(--primary-bg-color);
+}
+
+.container {
+  max-width: 1368px;
+  margin: 50px auto;
+  padding: 15px;
+}
+
+.footer {
+  padding: 50px 15px;
+  background-color: var(--footer-bg-color);
+  text-align: center;
+  position: sticky;
+  bottom: 0px;
+}
+
+.footer-message {
+  margin: 0px;
+  font-size: 16px;
+  font-family: "Courier New", Courier, monospace;
+  color: var(--footer-text-color);
+  font-weight: 600;
+}
+
+.note-list {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+  gap: 16px;
+}
+
+.note {
+  box-sizing: border-box;
+  height: 200px;
+  background-color: var(--note-bg-color);
+  padding: 10px;
+  border-radius: 8px;
+  display: inline-flex;
+  flex-direction: column;
+  justify-content: space-between;
+  white-space: pre-wrap;
+}
+.note-text {
+  font-size: 18px;
+  color: var(--text-color-black);
+  overflow-y: auto;
+}
+.note-text::-webkit-scrollbar {
+  width: 4px;
+}
+.note-text::-webkit-scrollbar-thumb {
+  border-radius: 10px;
+  background-color: var(--button-bg-color);
+}
+.note-text::-webkit-scrollbar-track {
+  background-color: var(--primary-bg-color);
+}
+.note-action {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+.note-date {
+  font-size: 14px;
+  font-weight: 600;
+  color: var(--text-color-black);
+}
+.note-trash {
+  height: 40px;
+  width: 40px;
+  border-radius: 40px;
+  box-shadow: 0px 1px 5px 0px rgba(0, 0, 0, 0.2);
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  background-color: var(--secondary-bg-color);
+  cursor: pointer;
+}
+.note-trash svg {
+  font-size: 18px;
+  color: var(--button-bg-color);
+}
+.add-note {
+  background-color: var(--add-note-bg-color);
+}
+.add-note textarea::-webkit-scrollbar {
+  width: 4px;
+}
+.add-note textarea::-webkit-scrollbar-thumb {
+  border-radius: 10px;
+  background-color: var(--button-bg-color);
+}
+.add-note textarea::-webkit-scrollbar-track {
+  background-color: var(--primary-bg-color);
+}
+.add-note textarea {
+  outline: none;
+  border: none;
+  font-size: 16px;
+  resize: none;
+  background-color: transparent;
+}
+.add-note-action {
+  margin-top: 8px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding-top: 4px;
+  border-top: 1px solid var(--footer-text-color);
+}
+.add-note-action button {
+  background-color: var(--button-bg-color);
+  border: none;
+  outline: none;
+  cursor: pointer;
+  padding: 8px 12px;
+  font-size: 16px;
+  border-radius: 40px;
+}
+
+.search {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 50px;
+  background-color: var(--secondary-bg-color);
+  margin-bottom: 40px;
+  border-radius: 100px;
+  box-shadow: 0px 0px 2px 0px var(--footer-bg-color);
+}
+.search input {
+  flex: 1;
+  outline: none;
+  border: none;
+  padding: 8px 16px;
+  background-color: transparent;
+  font-size: 16px;
+  color: var(--search-text-color);
+}
+.search-icon {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  background-color: var(--button-bg-color);
+  color: var(--text-color-black);
+  height: 40px;
+  width: 100px;
+  border-radius: 80px;
+  cursor: pointer;
+  margin-right: 10px;
+}
+.search-icon svg {
+  font-size: 20px;
 }
